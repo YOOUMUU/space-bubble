@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import '../styles/globals.css';
 import React from 'react';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: '空间气泡 | Space Bubble',
@@ -15,8 +16,14 @@ export default function RootLayout({ children }: Props) {
   return (
     <html className="scroll-smooth">
       <body>
-        <div className="fixed left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-white md:hidden">
-          <p className="text-xl">建议在电脑端打开该网站</p>
+        <div className="fixed bottom-0 right-0 z-50 flex h-screen w-screen items-end justify-end bg-white md:hidden">
+          <Image
+            className="w-[60%] "
+            src="/about/moblie-view.webp"
+            width={600}
+            height={600}
+            alt=""
+          />
         </div>
         <div className="hidden md:block">{children}</div>
       </body>
