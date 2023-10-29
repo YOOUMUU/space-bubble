@@ -17,13 +17,15 @@ const Nav = () => {
           height={100}
         />
       </Link>
-      <Image
-        className="w-[7vw]"
-        src="/nav/nav-circle.svg"
-        alt="navigation info"
-        width={200}
-        height={100}
-      />
+      <Link href="/" className="cursor-pointer duration-150 hover:scale-105">
+        <Image
+          className="w-[7vw]"
+          src="/nav/nav-circle.svg"
+          alt="navigation info"
+          width={200}
+          height={100}
+        />
+      </Link>
     </div>
   );
 };

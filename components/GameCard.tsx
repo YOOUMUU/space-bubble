@@ -65,20 +65,38 @@ const GameCard = ({ number }: Props) => {
         animate={{ opacity: 1, transition: { delay: 1.2 } }}
         className="flex-center z-50 mt-6 flex flex-row items-center gap-8"
       >
-        <Image
-          className="h-7 cursor-pointer duration-150 hover:scale-110"
-          src={`/queation/yes.svg`}
-          alt="Front"
-          width={40}
-          height={40}
-        />
-        <Image
-          className="h-7 cursor-pointer duration-150 hover:scale-110"
-          src={`/queation/no.svg`}
-          alt="Front"
-          width={40}
-          height={40}
-        />
+        <div className="relative">
+          <Image
+            className="h-7 cursor-pointer duration-150"
+            src={`/queation/yes.svg`}
+            alt="Front"
+            width={40}
+            height={40}
+          />
+          <Image
+            className="absolute top-0 h-8 cursor-pointer opacity-0 duration-150 hover:opacity-100"
+            src={`/queation/t-shadow.webp`}
+            alt="Front"
+            width={40}
+            height={40}
+          />
+        </div>
+        <div className="relative">
+          <Image
+            className="h-7 cursor-pointer duration-150"
+            src={`/queation/no.svg`}
+            alt="Front"
+            width={40}
+            height={40}
+          />
+          <Image
+            className="absolute top-0 h-8 cursor-pointer opacity-0 duration-150 hover:opacity-100"
+            src={`/queation/t-shadow.webp`}
+            alt="Front"
+            width={40}
+            height={40}
+          />
+        </div>
       </motion.div>
     </motion.div>
   );

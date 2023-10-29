@@ -12,6 +12,15 @@ const Game = () => {
   const [currentNum, setCurrentNum] = useState(0);
   const [isChlick, setIsChlick] = useState(false);
 
+  const TOTAL_CARDS = 18;
+  const [position, setPosition] = useState(0);
+
+  const movePiece = () => {
+    const steps = Math.floor(Math.random() * 5); // 随机选择 0 到 4 之间的数
+    const newPosition = (position + steps) % TOTAL_CARDS;
+    setPosition(newPosition);
+  };
+
   const handleMouseOver = () => {
     setImageSrc('/qian/chouqian-white.svg');
   };
@@ -32,6 +41,7 @@ const Game = () => {
         <button
           onMouseOver={handleMouseOver}
           onMouseOut={handleMouseOut}
+          onClick={movePiece}
           className="z-40 cursor-pointer rounded border-2 border-[#9D495E] px-8 py-2 text-[#9D495E] duration-150 hover:bg-[#9D495E] hover:text-white"
         >
           <Image
