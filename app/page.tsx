@@ -66,28 +66,28 @@ const Home = () => {
       <div className="fixed z-30 grid h-full w-full grid-cols-2 p-40">
         <Image
           className="col-start-1 row-start-1 w-[12vw] max-w-[160px] self-start justify-self-start"
-          src="/home/qi.webp"
-          alt="letter"
-          width={800}
-          height={800}
-        />
-        <Image
-          className="col-start-2 row-start-1 w-[12vw] max-w-[160px] self-start justify-self-end"
-          src="/home/pao.webp"
-          alt="letter"
-          width={800}
-          height={800}
-        />
-        <Image
-          className="col-start-1 row-start-2 w-[12vw] max-w-[160px] self-end justify-self-start"
           src="/home/kong.webp"
           alt="letter"
           width={800}
           height={800}
         />
         <Image
-          className="col-start-2 row-start-2 w-[12vw] max-w-[160px] self-end justify-self-end"
+          className="col-start-2 row-start-1 w-[12vw] max-w-[160px] self-start justify-self-end"
+          src="/home/qi.webp"
+          alt="letter"
+          width={800}
+          height={800}
+        />
+        <Image
+          className="col-start-1 row-start-2 w-[12vw] max-w-[160px] self-end justify-self-start"
           src="/home/jian.webp"
+          alt="letter"
+          width={800}
+          height={800}
+        />
+        <Image
+          className="col-start-2 row-start-2 w-[12vw] max-w-[160px] self-end justify-self-end"
+          src="/home/pao.webp"
           alt="letter"
           width={800}
           height={800}

@@ -10,6 +10,26 @@
   .container {
     @apply max-w-7xl mx-auto px-24;
   }
+
+  .rotate-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    transform-origin: center;
+  }
+
+  .rotateY-180 {
+    transform: rotateY(180deg);
+    transform-origin: center;
+  }
+
+  .rotateY-0 {
+    transform: rotateY(0deg);
+    transform-origin: center;
+  }
 }
 
 .card {
