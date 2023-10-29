@@ -19,6 +19,7 @@ const Game = () => {
     const steps = Math.floor(Math.random() * 5); // 随机选择 0 到 4 之间的数
     const newPosition = (position + steps) % TOTAL_CARDS;
     setPosition(newPosition);
+    console.log(steps);
   };
 
   const handleMouseOver = () => {
@@ -37,6 +38,8 @@ const Game = () => {
   return (
     <>
       <Nav />
+
+      {/* Click */}
       <div className="flex-center absolute top-[-8vh] mt-40 flex w-full">
         <button
           onMouseOver={handleMouseOver}
@@ -53,6 +56,8 @@ const Game = () => {
           />
         </button>
       </div>
+
+      {/* BG */}
       <div className="absolute z-0 h-full w-full object-cover">
         <Image
           className="absolute z-0 h-full w-full object-cover"
@@ -61,9 +66,11 @@ const Game = () => {
           fill
         />
       </div>
+
+      {/* Cards */}
       <section className="flex-center absolute z-10 flex h-screen w-screen">
         <div className="w-full px-[8vw]">
-          <div className="grid h-full grid-cols-9 gap-10 gap-x-4">
+          <div className="relative grid h-full grid-cols-9 gap-10 gap-x-4">
             {cardNumbers.map((number) => (
               <ClickCard
                 key={number}
@@ -72,10 +79,47 @@ const Game = () => {
                 frontImage={`/cards/top/${number}.webp`}
               />
             ))}
+
+            {/* Qizi */}
+            <div className="absolute left-[-6vw] top-0">
+              <Image
+                className="w-[6vw]"
+                src="/qian/qizi.webp"
+                alt="bg"
+                width={600}
+                height={1000}
+              />
+            </div>
+
+            {/* Arrow1 */}
+            <div className="flex-center absolute right-[-4vw] top-0 flex h-full">
+              <Image
+                className="w-[4vw]"
+                src="/qian/line1.svg"
+                alt="bg"
+                width={600}
+                height={1000}
+              />
+            </div>
+
+            {/* Arrow2 */}
+            <div className="absolute bottom-0 left-[-4vw] flex h-full items-end justify-end">
+              <Image
+                className="mb-[150%] w-[3vw]"
+                src="/qian/line2.svg"
+                alt="bg"
+                width={600}
+                height={1000}
+              />
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Game Card */}
       {isChlick && <GameCard number={currentNum} />}
+
+      {/* Qian */}
       <div className="flex-center absolute bottom-0 z-40 flex w-full flex-row gap-16">
         <Qian />
         <Qian />
