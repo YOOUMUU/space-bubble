@@ -11,3 +11,26 @@
     @apply max-w-7xl mx-auto px-24;
   }
 }
+
+.card {
+  @apply relative w-full h-auto aspect-[707/1000] transition-transform duration-700 ease-in-out transform;
+  perspective: 1000px;
+}
+.face {
+  @apply absolute w-full h-full transition-transform duration-700 ease-in-out transform;
+  backface-visibility: hidden;
+}
+.front {
+  @apply shadow-xl;
+  transform: rotateY(0deg);
+}
+.back {
+  @apply shadow-xl;
+  transform: rotateY(180deg);
+}
+.card:hover .front {
+  transform: rotateY(180deg);
+}
+.card:hover .back {
+  transform: rotateY(0);
+}
