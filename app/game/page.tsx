@@ -14,12 +14,22 @@ const Game = () => {
 
   const TOTAL_CARDS = 18;
   const [position, setPosition] = useState(0);
+  const [step, setStep] = useState(6);
 
   const movePiece = () => {
-    const steps = Math.floor(Math.random() * 5); // 随机选择 0 到 4 之间的数
-    const newPosition = (position + steps) % TOTAL_CARDS;
+    const steps = Math.floor(Math.random() * 5);
+    setStep(steps);
+    let newPosition = position + steps;
+
+    if (newPosition >= TOTAL_CARDS) {
+      newPosition = 18;
+    } else if (position + steps > TOTAL_CARDS) {
+      newPosition = TOTAL_CARDS;
+    }
+
     setPosition(newPosition);
     console.log(steps);
+    console.log(newPosition);
   };
 
   const handleMouseOver = () => {
@@ -120,12 +130,12 @@ const Game = () => {
       {isChlick && <GameCard number={currentNum} />}
 
       {/* Qian */}
-      <div className="flex-center absolute bottom-0 z-40 flex w-full flex-row gap-16">
-        <Qian />
-        <Qian />
-        <Qian />
-        <Qian />
-        <Qian />
+      <div className="absolute bottom-0 z-40 flex w-full flex-row items-end justify-center gap-16">
+        <Qian number={4} choosen={step === 4} />
+        <Qian number={3} choosen={step === 3} />
+        <Qian number={2} choosen={step === 2} />
+        <Qian number={1} choosen={step === 1} />
+        <Qian number={0} choosen={step === 0} />
       </div>
     </>
   );
