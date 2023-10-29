@@ -4,11 +4,21 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import ClickCard from '@/components/ClickCard';
 import GameCard from '@/components/GameCard';
+import Qian from '@/components/Qian';
 
 const Game = () => {
+  const [imageSrc, setImageSrc] = useState('/qian/chouqian.svg');
   const cardNumbers = Array.from({ length: 18 }, (_, index) => index + 1);
   const [currentNum, setCurrentNum] = useState(0);
   const [isChlick, setIsChlick] = useState(false);
+
+  const handleMouseOver = () => {
+    setImageSrc('/qian/chouqian-white.svg');
+  };
+
+  const handleMouseOut = () => {
+    setImageSrc('/qian/chouqian.svg');
+  };
 
   const setNum = (num: number) => {
     setCurrentNum(num);
@@ -18,9 +28,24 @@ const Game = () => {
   return (
     <>
       <Nav />
+      <div className="flex-center absolute top-[-8vh] mt-40 flex w-full">
+        <button
+          onMouseOver={handleMouseOver}
+          onMouseOut={handleMouseOut}
+          className="z-40 cursor-pointer rounded border-2 border-[#9D495E] px-8 py-2 text-[#9D495E] duration-150 hover:bg-[#9D495E] hover:text-white"
+        >
+          <Image
+            className="h-5 w-auto"
+            src={imageSrc}
+            alt="btn"
+            width={800}
+            height={1000}
+          />
+        </button>
+      </div>
       <div className="absolute z-0 h-full w-full object-cover">
         <Image
-          className="absolute h-full w-full object-cover"
+          className="absolute z-0 h-full w-full object-cover"
           src="/cards/bg.webp"
           alt="bg"
           fill
@@ -41,6 +66,13 @@ const Game = () => {
         </div>
       </section>
       {isChlick && <GameCard number={currentNum} />}
+      <div className="flex-center absolute bottom-0 z-40 flex w-full flex-row gap-16">
+        <Qian />
+        <Qian />
+        <Qian />
+        <Qian />
+        <Qian />
+      </div>
     </>
   );
 };
