@@ -10,7 +10,7 @@ const Game = () => {
   const [imageSrc, setImageSrc] = useState('/qian/chouqian.svg');
   const cardNumbers = Array.from({ length: 18 }, (_, index) => index + 1);
   const [currentNum, setCurrentNum] = useState(0);
-  const [isChlick, setIsChlick] = useState(false);
+  const [isClicked, setIsChlicked] = useState(false);
 
   const TOTAL_CARDS = 18;
   const [position, setPosition] = useState(0);
@@ -42,7 +42,7 @@ const Game = () => {
 
   const setNum = (num: number) => {
     setCurrentNum(num);
-    setIsChlick(!isChlick);
+    setIsChlicked(!isClicked);
   };
 
   return (
@@ -127,7 +127,12 @@ const Game = () => {
       </section>
 
       {/* Game Card */}
-      {isChlick && <GameCard number={currentNum} />}
+      {isClicked && (
+        <GameCard
+          number={currentNum}
+          toggleVisibility={() => setIsChlicked(false)}
+        />
+      )}
 
       {/* Qian */}
       <div className="absolute bottom-0 z-40 flex w-full flex-row items-end justify-center gap-16">

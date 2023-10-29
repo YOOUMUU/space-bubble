@@ -2,12 +2,27 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 type Props = {
   number: number;
+  toggleVisibility: () => void;
 };
 
-const GameCard = ({ number }: Props) => {
+const GameCard = ({ number, toggleVisibility }: Props) => {
+  const ending =
+    number >= 1 && number <= 4
+      ? '/ending/1'
+      : number >= 5 && number <= 8
+      ? '/ending/2'
+      : number >= 9 && number <= 12
+      ? '/ending/3'
+      : number >= 13 && number <= 16
+      ? '/ending/4'
+      : number >= 17 && number <= 18
+      ? '/ending/5'
+      : '/ending';
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -60,27 +75,32 @@ const GameCard = ({ number }: Props) => {
           height={100}
         />
       </motion.div>
+
+      {/* Choose */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { delay: 1.2 } }}
         className="flex-center z-50 mt-6 flex flex-row items-center gap-8"
       >
         <div className="relative">
-          <Image
-            className="h-7 cursor-pointer duration-150"
-            src={`/queation/yes.svg`}
-            alt="Front"
-            width={40}
-            height={40}
-          />
-          <Image
-            className="absolute top-0 h-8 cursor-pointer opacity-0 duration-150 hover:opacity-100"
-            src={`/queation/t-shadow.webp`}
-            alt="Front"
-            width={40}
-            height={40}
-          />
+          <Link href={ending}>
+            <Image
+              className="h-7 cursor-pointer duration-150"
+              src={`/queation/yes.svg`}
+              alt="Front"
+              width={40}
+              height={40}
+            />
+            <Image
+              className="absolute top-0 h-8 cursor-pointer opacity-0 duration-150 hover:opacity-100"
+              src={`/queation/t-shadow.webp`}
+              alt="Front"
+              width={40}
+              height={40}
+            />
+          </Link>
         </div>
+
         <div className="relative">
           <Image
             className="h-7 cursor-pointer duration-150"
@@ -95,6 +115,7 @@ const GameCard = ({ number }: Props) => {
             alt="Front"
             width={40}
             height={40}
+            onClick={toggleVisibility}
           />
         </div>
       </motion.div>
