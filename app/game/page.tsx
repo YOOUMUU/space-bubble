@@ -51,20 +51,32 @@ const Game = () => {
 
       {/* Click */}
       <div className="flex-center absolute top-[-8vh] mt-40 flex w-full">
-        <button
-          onMouseOver={handleMouseOver}
-          onMouseOut={handleMouseOut}
-          onClick={movePiece}
-          className="z-40 cursor-pointer rounded border-2 border-[#9D495E] px-8 py-2 text-[#9D495E] duration-150 hover:bg-[#9D495E] hover:text-white"
-        >
-          <Image
-            className="h-5 w-auto"
-            src={imageSrc}
-            alt="btn"
-            width={800}
-            height={1000}
-          />
-        </button>
+        {isClicked ? (
+          <div>
+            <Image
+              className="h-24 w-auto"
+              src={`/steps/step-${step}.webp`}
+              alt="btn"
+              width={800}
+              height={1000}
+            />
+          </div>
+        ) : (
+          <button
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+            onClick={movePiece}
+            className="z-40 cursor-pointer rounded border-2 border-[#9D495E] px-8 py-2 text-[#9D495E] duration-150 hover:bg-[#9D495E] hover:text-white"
+          >
+            <Image
+              className="h-5 w-auto"
+              src={imageSrc}
+              alt="btn"
+              width={800}
+              height={1000}
+            />
+          </button>
+        )}
       </div>
 
       {/* BG */}
