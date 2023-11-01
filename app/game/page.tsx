@@ -1,15 +1,15 @@
 'use client';
 import Nav from '@/components/Nav';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import ClickCard from '@/components/ClickCard';
 import GameCard from '@/components/GameCard';
 import Qian from '@/components/Qian';
 
 const Game = () => {
+  const [isFirstClick, setIsFirstClick] = useState(true);
   const [imageSrc, setImageSrc] = useState('/qian/chouqian.svg');
   const cardNumbers = Array.from({ length: 18 }, (_, index) => index + 1);
-  const [currentNum, setCurrentNum] = useState(0);
   const [isClicked, setIsChlicked] = useState(false);
 
   const TOTAL_CARDS = 18;
@@ -17,8 +17,17 @@ const Game = () => {
   const [step, setStep] = useState(6);
 
   const movePiece = () => {
-    const steps = Math.floor(Math.random() * 5);
+    let steps;
+
+    if (isFirstClick) {
+      steps = Math.floor(Math.random() * 4) + 1;
+      setIsFirstClick(false);
+    } else {
+      steps = Math.floor(Math.random() * 5);
+    }
+
     setStep(steps);
+
     let newPosition = position + steps;
 
     if (newPosition >= TOTAL_CARDS) {
@@ -28,6 +37,7 @@ const Game = () => {
     }
 
     setPosition(newPosition);
+    setIsChlicked(true);
     console.log(steps);
     console.log(newPosition);
   };
@@ -40,17 +50,16 @@ const Game = () => {
     setImageSrc('/qian/chouqian.svg');
   };
 
-  const setNum = (num: number) => {
-    setCurrentNum(num);
-    setIsChlicked(!isClicked);
-  };
+  useEffect(() => {
+    setImageSrc('/qian/chouqian.svg');
+  }, [isClicked]);
 
   return (
     <>
       <Nav />
 
       {/* Click */}
-      <div className="flex-center absolute top-[-8vh] mt-40 flex w-full">
+      <div className="flex-center absolute top-[-8vh] z-40 mt-40 flex w-full">
         {isClicked ? (
           <div>
             <Image
@@ -96,8 +105,6 @@ const Game = () => {
             {cardNumbers.map((number) => (
               <ClickCard
                 key={number}
-                number={number}
-                setNum={setNum}
                 frontImage={`/cards/top/${number}.webp`}
               />
             ))}
@@ -141,7 +148,7 @@ const Game = () => {
       {/* Game Card */}
       {isClicked && (
         <GameCard
-          number={currentNum}
+          number={position}
           toggleVisibility={() => setIsChlicked(false)}
         />
       )}
