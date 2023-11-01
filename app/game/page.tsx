@@ -54,6 +54,10 @@ const Game = () => {
     setImageSrc('/qian/chouqian.svg');
   }, [isClicked]);
 
+  const handleCoordinatesUpdated = (coordinates: { x: number; y: number }) => {
+    console.log(coordinates);
+  };
+
   return (
     <>
       <Nav />
@@ -105,7 +109,10 @@ const Game = () => {
             {cardNumbers.map((number) => (
               <ClickCard
                 key={number}
+                number={number}
+                position={position}
                 frontImage={`/cards/top/${number}.webp`}
+                onCoordinatesUpdated={handleCoordinatesUpdated}
               />
             ))}
 
