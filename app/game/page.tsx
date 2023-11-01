@@ -1,20 +1,25 @@
 'use client';
 import Nav from '@/components/Nav';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import ClickCard from '@/components/ClickCard';
 import GameCard from '@/components/GameCard';
 import Qian from '@/components/Qian';
+import { motion } from 'framer-motion';
 
 const Game = () => {
   const [isFirstClick, setIsFirstClick] = useState(true);
   const [imageSrc, setImageSrc] = useState('/qian/chouqian.svg');
-  const cardNumbers = Array.from({ length: 18 }, (_, index) => index + 1);
+  const cardNumbers = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 18, 17, 16, 15, 14, 13, 12, 11, 10,
+  ];
   const [isClicked, setIsChlicked] = useState(false);
 
   const TOTAL_CARDS = 18;
   const [position, setPosition] = useState(0);
   const [step, setStep] = useState(6);
+
+  const [pieceCoordinates, setPieceCoordinates] = useState({ x: 0, y: 0 });
 
   const movePiece = () => {
     let steps;
@@ -54,9 +59,25 @@ const Game = () => {
     setImageSrc('/qian/chouqian.svg');
   }, [isClicked]);
 
-  const handleCoordinatesUpdated = (coordinates: { x: number; y: number }) => {
-    console.log(coordinates);
-  };
+  const qiziRef = useRef<HTMLDivElement>(null);
+
+  const handleCoordinatesUpdated = useCallback(
+    (coordinates: { x: number; y: number }) => {
+      const rect = qiziRef.current!.getBoundingClientRect();
+      const currentX = rect.left + rect.width / 2;
+      const currentY =
+        rect.top + rect.height / 2 + 1.5 * window.innerHeight * 0.01;
+
+      const relativeCoordinates = {
+        x: coordinates.x - currentX,
+        y: coordinates.y - currentY,
+      };
+
+      setPieceCoordinates(relativeCoordinates);
+      console.log(coordinates);
+    },
+    [setPieceCoordinates]
+  );
 
   return (
     <>
@@ -117,14 +138,20 @@ const Game = () => {
             ))}
 
             {/* Qizi */}
-            <div className="absolute left-[-6vw] top-0">
-              <Image
-                className="w-[6vw]"
-                src="/qian/qizi.webp"
-                alt="bg"
-                width={600}
-                height={1000}
-              />
+            <div className="absolute left-[-6vw] top-0" ref={qiziRef}>
+              <motion.div
+                initial={{ x: pieceCoordinates.x, y: pieceCoordinates.y }}
+                animate={{ x: pieceCoordinates.x, y: pieceCoordinates.y }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+              >
+                <Image
+                  className="w-[6vw]"
+                  src="/qian/qizi.webp"
+                  alt="bg"
+                  width={600}
+                  height={1000}
+                />
+              </motion.div>
             </div>
 
             {/* Arrow1 */}

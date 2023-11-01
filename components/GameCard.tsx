@@ -25,19 +25,19 @@ const GameCard = ({ number, toggleVisibility }: Props) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: 0.5 } }}
+      animate={{ opacity: 1, transition: { delay: 1, duration: 0.5 } }}
       className="flex-center absolute z-50 flex h-screen w-screen flex-col"
     >
       <div className="absolute h-full w-full bg-white/70" />
       <motion.div
         initial={{ scale: 0.5 }}
-        animate={{ scale: 1, transition: { duration: 1 } }}
+        animate={{ scale: 1, transition: { delay: 1, duration: 1 } }}
         className="z-50"
       >
         <div className="rotate-container relative aspect-[707/1000] h-auto w-[240px] transition-transform duration-700 ease-in-out">
           <motion.div
             initial={{ rotateY: 180 }}
-            animate={{ rotateY: 0 }}
+            animate={{ rotateY: 0, transition: { delay: 1.5, duration: 0.5 } }}
             className="backface-hidden absolute h-full w-full shadow-2xl transition-transform duration-700 ease-in-out"
           >
             <Image
@@ -49,7 +49,10 @@ const GameCard = ({ number, toggleVisibility }: Props) => {
           </motion.div>
           <motion.div
             initial={{ rotateY: 0 }}
-            animate={{ rotateY: 180 }}
+            animate={{
+              rotateY: 180,
+              transition: { delay: 1.5, duration: 0.5 },
+            }}
             className="backface-hidden absolute h-full w-full shadow-2xl transition-transform duration-700 ease-in-out"
           >
             <Image
@@ -63,7 +66,7 @@ const GameCard = ({ number, toggleVisibility }: Props) => {
       </motion.div>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { delay: 1.2 } }}
+        animate={{ opacity: 1, transition: { delay: 2.2 } }}
         className="z-50 mt-10"
       >
         <Image
@@ -78,7 +81,7 @@ const GameCard = ({ number, toggleVisibility }: Props) => {
       {/* Choose */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, transition: { delay: 1.2 } }}
+        animate={{ opacity: 1, transition: { delay: 2.2 } }}
         className="flex-center z-50 mt-6 flex flex-row items-center gap-8"
       >
         <div className="relative">

@@ -25,7 +25,9 @@ export default function RootLayout({ children }: Props) {
             alt=""
           />
         </div>
-        <div className="hidden md:block">{children}</div>
+        <div className="hidden h-screen w-screen overflow-hidden md:block">
+          {children}
+        </div>
       </body>
     </html>
   );
