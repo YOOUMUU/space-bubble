@@ -261,11 +261,23 @@ const About = () => {
         <div className="container">
           <Image
             className="h-auto w-full"
-            src="/about/zhizuo.webp"
+            src="/about/zhicuo.webp"
             alt=""
             width={1600}
             height={600}
           />
+          <div className="flex-center mb-12 grid w-full grid-cols-[1.02fr,2fr] gap-12">
+            <video src="/about/v1.mp4" autoPlay loop muted />
+            <video src="/about/v2.mp4" autoPlay loop muted />
+          </div>
+          <Image
+            className="h-auto w-full"
+            src="/about/code.webp"
+            alt=""
+            width={1600}
+            height={600}
+          />
+          <video src="/about/v3.mov" autoPlay loop muted className="mt-8" />
         </div>
       </section>
       <section className="mb-12 pt-24">
