@@ -9,6 +9,15 @@ const About = () => {
   return (
     <>
       <AboutNav />
+      <div className="absolute z-[-1] h-screen w-screen">
+        <Image
+          className="h-full w-full bg-cover object-cover opacity-[18%]"
+          src="/about/Background.webp"
+          alt=""
+          width={1600}
+          height={800}
+        />
+      </div>
       <section className="my-16">
         <div className="container mt-32">
           <div className="flex items-center justify-between border-b-2 border-[#98485C] pb-2">

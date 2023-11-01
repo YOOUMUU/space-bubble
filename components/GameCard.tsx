@@ -22,6 +22,18 @@ const GameCard = ({ number, toggleVisibility }: Props) => {
       ? '/ending/5'
       : '/ending';
 
+  const positionMap: { [key: number]: number } = {
+    10: 18,
+    11: 17,
+    12: 16,
+    13: 15,
+    14: 14,
+    15: 13,
+    16: 12,
+    17: 11,
+    18: 10,
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -41,7 +53,7 @@ const GameCard = ({ number, toggleVisibility }: Props) => {
             className="backface-hidden absolute h-full w-full shadow-2xl transition-transform duration-700 ease-in-out"
           >
             <Image
-              src={`/cards/bottom/${number}.webp`}
+              src={`/cards/bottom/${positionMap[number] ?? number}.webp`}
               alt="Back"
               width={800}
               height={1000}
@@ -56,7 +68,7 @@ const GameCard = ({ number, toggleVisibility }: Props) => {
             className="backface-hidden absolute h-full w-full shadow-2xl transition-transform duration-700 ease-in-out"
           >
             <Image
-              src={`/cards/top/${number}.webp`}
+              src={`/cards/top/${positionMap[number] ?? number}.webp`}
               alt="Front"
               width={800}
               height={1000}

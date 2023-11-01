@@ -18,16 +18,28 @@ const ClickCard = ({
   const rotateContainerRef = useRef(null);
 
   const updateCoordinates = useCallback(() => {
-    if (rotateContainerRef.current && number === position) {
+    const positionMap: { [key: number]: number } = {
+      10: 18,
+      11: 17,
+      12: 16,
+      13: 15,
+      14: 14,
+      15: 13,
+      16: 12,
+      17: 11,
+      18: 10,
+    };
+
+    const mappedNumber = positionMap[number] ?? number;
+
+    if (rotateContainerRef.current && mappedNumber === position) {
       const rect = (
         rotateContainerRef.current as HTMLElement
       ).getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      console.log(rect.height);
-      const newCoordinates = { x: centerX, y: centerY };
 
-      console.log(centerX, centerY);
+      const newCoordinates = { x: centerX, y: centerY };
 
       onCoordinatesUpdated(newCoordinates);
     }
