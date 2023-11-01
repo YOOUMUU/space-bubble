@@ -9,7 +9,7 @@ const About = () => {
   return (
     <>
       <AboutNav />
-      <div className="absolute z-[-1] h-screen w-screen">
+      <div className="fixed z-[-1] h-screen w-screen">
         <Image
           className="h-full w-full bg-cover object-cover opacity-[18%]"
           src="/about/Background.webp"

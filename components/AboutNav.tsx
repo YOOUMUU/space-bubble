@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Nav = () => {
   return (
-    <nav className="fixed top-0 z-30 flex w-full items-center justify-between bg-[#98485C] p-4">
+    <nav className="sticky top-0 z-30 flex w-full items-center justify-between bg-[#98485C] p-4">
       <Link href="/" className="duration-150 hover:scale-105">
         <Image
           className="h-4"
