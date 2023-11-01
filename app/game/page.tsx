@@ -88,7 +88,7 @@ const Game = () => {
         {isClicked ? (
           <div>
             <Image
-              className="h-24 w-auto"
+              className="mt-[-2vh] h-20 w-auto"
               src={`/steps/step-${step}.webp`}
               alt="btn"
               width={800}
