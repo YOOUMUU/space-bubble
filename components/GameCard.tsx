@@ -14,11 +14,11 @@ const GameCard = ({ number, toggleVisibility }: Props) => {
       ? '/ending/1'
       : number >= 5 && number <= 8
       ? '/ending/2'
-      : number >= 9 && number <= 12
+      : number === 9 && number <= 12
       ? '/ending/3'
-      : number >= 13 && number <= 16
+      : number >= 13 && number <= 15
       ? '/ending/4'
-      : number >= 17 && number <= 18
+      : number >= 16 && number <= 18
       ? '/ending/5'
       : '/ending';
 
