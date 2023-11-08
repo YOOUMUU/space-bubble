@@ -136,7 +136,7 @@ const About = () => {
               <Image
                 className={`mx-auto ${
                   currentImage === 1 ? 'flex' : 'hidden'
-                } h-full w-auto`}
+                } h-full w-auto object-contain`}
                 src="/about/click-1.webp"
                 alt=""
                 width={1600}
@@ -148,7 +148,7 @@ const About = () => {
                 } h-full w-full bg-[#231916]/70`}
               >
                 <Image
-                  className="mx-auto h-[80%] w-auto"
+                  className="mx-auto h-auto w-[90%] object-contain"
                   src="/about/click-2.webp"
                   alt=""
                   width={1600}
@@ -161,7 +161,7 @@ const About = () => {
                 } h-full w-full bg-[#231916]/70`}
               >
                 <Image
-                  className="mx-auto h-[80%] w-auto"
+                  className="mx-auto h-auto w-[90%] object-contain"
                   src="/about/click-3.webp"
                   alt=""
                   width={1600}
@@ -174,7 +174,7 @@ const About = () => {
                 } h-full w-full items-start justify-center overflow-auto py-12`}
               >
                 <Image
-                  className="h-auto w-[90%]"
+                  className="h-auto w-[90%] object-contain"
                   src="/about/click-4.webp"
                   alt=""
                   width={1600}
@@ -187,7 +187,7 @@ const About = () => {
                 } h-full w-full`}
               >
                 <Image
-                  className="mx-auto h-[80%] w-auto"
+                  className="mx-auto h-auto w-[90%] object-contain"
                   src="/about/click-5.webp"
                   alt=""
                   width={1600}
@@ -200,7 +200,7 @@ const About = () => {
                 } flex h-full w-full`}
               >
                 <Image
-                  className="mx-auto h-[80%] w-auto"
+                  className="mx-auto h-[80%] w-auto object-contain"
                   src="/about/click-6.webp"
                   alt=""
                   width={1600}
@@ -213,7 +213,7 @@ const About = () => {
                 } flex h-full w-full`}
               >
                 <Image
-                  className="mx-auto h-auto w-[95%]"
+                  className="mx-auto h-auto w-[95%] object-contain"
                   src="/about/click-7.webp"
                   alt=""
                   width={1600}
@@ -228,7 +228,7 @@ const About = () => {
         <div className="container">
           <Image
             className="h-auto w-full"
-            src="/about/xiangmuqiyuan.webp"
+            src="/about/xiangmuqiyuan.png"
             alt=""
             width={2000}
             height={1200}
@@ -239,9 +239,9 @@ const About = () => {
         <div className="container">
           <Image
             className="h-auto w-full"
-            src="/about/ganxing.webp"
+            src="/about/ganxing.png"
             alt=""
-            width={2000}
+            width={2400}
             height={1200}
           />
         </div>
