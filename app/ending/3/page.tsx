@@ -8,16 +8,16 @@ const page = () => {
     <>
       <Nav />
       <section>
-        <div className="flex-center absolute z-[0] flex h-screen w-screen">
+        <div className="absolute z-10 flex h-screen w-screen flex-col items-end justify-center px-16">
           <Image
             className="h-auto w-full"
-            src="/end/3.webp"
+            src="/end/t-3.svg"
             alt=""
-            width={1600}
-            height={800}
+            width={600}
+            height={200}
           />
           <Link href="/game">
-            <div className="absolute right-[6vw] z-[1] mt-[8.5vh] w-40 cursor-pointer duration-200 hover:scale-105">
+            <div className="mt-12 w-40 cursor-pointer duration-200 hover:scale-105">
               <Image
                 className="h-auto w-full"
                 src="/end/btn.webp"
@@ -28,10 +28,19 @@ const page = () => {
             </div>
           </Link>
         </div>
-        <div className="absolute z-[-1] h-screen w-screen">
+        <div className="flex-center absolute z-[0] flex h-screen w-screen justify-end overflow-hidden">
           <Image
-            className="h-full w-full bg-cover object-cover opacity-[18%]"
-            src="/about/Background.webp"
+            className="h-full w-full object-cover"
+            src="/end/3.webp"
+            alt=""
+            width={1600}
+            height={800}
+          />
+        </div>
+        <div className="fixed bottom-8 left-12 z-[2] w-64">
+          <Image
+            className=""
+            src="/end/footer.svg"
             alt=""
             width={1600}
             height={800}
