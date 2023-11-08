@@ -169,12 +169,12 @@ const About = () => {
                 />
               </div>
               <div
-                className={`flex-center ${
+                className={`${
                   currentImage === 4 ? 'flex' : 'hidden'
-                } h-full w-full`}
+                } h-full w-full items-start justify-center overflow-auto py-12`}
               >
                 <Image
-                  className="mx-auto h-auto w-[90%]"
+                  className="h-auto w-[90%]"
                   src="/about/click-4.webp"
                   alt=""
                   width={1600}
