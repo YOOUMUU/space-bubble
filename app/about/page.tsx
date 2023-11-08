@@ -227,10 +227,24 @@ const About = () => {
       <section className="py-24" id="xiangmuqiyuan">
         <div className="container">
           <Image
-            className="h-auto w-full"
-            src="/about/xiangmuqiyuan.png"
+            className="h-[22px] w-auto"
+            src="/about/qiyuan-head-head.svg"
             alt=""
-            width={2000}
+            width={1200}
+            height={300}
+          />
+          <Image
+            className="h-auto w-full"
+            src="/about/qiyuan-text.png"
+            alt=""
+            width={1200}
+            height={300}
+          />
+          <Image
+            className="h-auto w-full"
+            src="/about/qiyuan-img.png"
+            alt=""
+            width={5000}
             height={1200}
           />
         </div>
@@ -238,10 +252,33 @@ const About = () => {
       <section className="py-24" id="ganxing">
         <div className="container">
           <Image
-            className="h-auto w-full"
-            src="/about/ganxing.png"
+            className="h-[22px] w-auto"
+            src="/about/ganxing-head-head.svg"
             alt=""
-            width={2400}
+            width={1200}
+            height={300}
+          />
+          <div className="flex-center relative flex">
+            <Image
+              className="h-auto w-full"
+              src="/about/text-bg.png"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+            <Image
+              className="absolute w-[85%]"
+              src="/about/ganxing-text.svg"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+          </div>
+          <Image
+            className="h-auto w-full"
+            src="/about/ganxing-img.png"
+            alt=""
+            width={5000}
             height={1200}
           />
         </div>
