@@ -63,7 +63,7 @@ const Home = () => {
           height={800}
         />
       </div>
-      <div className="fixed z-30 grid h-full w-full grid-cols-2 p-40">
+      <div className="fixed z-30 grid h-full w-full grid-cols-2 px-[16vw] py-[16vh]">
         <Image
           className="col-start-1 row-start-1 w-[12vw] max-w-[160px] self-start justify-self-start"
           src="/home/kong.webp"

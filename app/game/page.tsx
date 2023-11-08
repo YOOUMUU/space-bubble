@@ -13,15 +13,17 @@ const Game = () => {
   const cardNumbers = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
   ];
-  const [isClicked, setIsChlicked] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   const TOTAL_CARDS = 18;
   const [position, setPosition] = useState(0);
   const [step, setStep] = useState(6);
 
   const [pieceCoordinates, setPieceCoordinates] = useState({ x: 0, y: 0 });
+  const [qiziDuration, setDuration] = useState(1);
+  const [isForward, setIsForward] = useState(true);
 
-  const movePiece = () => {
+  const movePiece = async () => {
     let steps;
 
     if (isFirstClick) {
@@ -31,9 +33,15 @@ const Game = () => {
       steps = Math.floor(Math.random() * 5);
     }
 
+    setDuration(1 * steps);
+
     setStep(steps);
 
     let newPosition = position + steps;
+
+    if (newPosition >= 10) {
+      setIsForward(false);
+    }
 
     if (newPosition >= TOTAL_CARDS) {
       newPosition = 18;
@@ -42,9 +50,10 @@ const Game = () => {
     }
 
     setPosition(newPosition);
-    setIsChlicked(true);
-    console.log(steps);
-    console.log(newPosition);
+
+    setTimeout(() => {
+      setIsClicked(true);
+    }, steps * 1000);
   };
 
   const handleMouseOver = () => {
@@ -74,7 +83,6 @@ const Game = () => {
       };
 
       setPieceCoordinates(relativeCoordinates);
-      console.log(coordinates);
     },
     [setPieceCoordinates]
   );
@@ -142,10 +150,10 @@ const Game = () => {
               <motion.div
                 initial={{ x: pieceCoordinates.x, y: pieceCoordinates.y }}
                 animate={{ x: pieceCoordinates.x, y: pieceCoordinates.y }}
-                transition={{ duration: 0.5, ease: 'easeInOut' }}
+                transition={{ duration: qiziDuration, ease: 'easeInOut' }}
               >
                 <Image
-                  className="w-[6vw]"
+                  className={`w-[6vw] ${isForward ? '' : 'scale-x-[-100%]'}`}
                   src="/qian/qizi.webp"
                   alt="bg"
                   width={600}
@@ -183,7 +191,7 @@ const Game = () => {
       {isClicked && (
         <GameCard
           number={position}
-          toggleVisibility={() => setIsChlicked(false)}
+          toggleVisibility={() => setIsClicked(false)}
         />
       )}
 

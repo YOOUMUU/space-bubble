@@ -17,7 +17,10 @@ const Nav = () => {
           height={100}
         />
       </Link>
-      <Link href="/" className="cursor-pointer duration-150 hover:scale-105">
+      <Link
+        href="/starting"
+        className="cursor-pointer duration-150 hover:scale-105"
+      >
         <Image
           className="w-[7vw]"
           src="/nav/nav-circle.svg"
