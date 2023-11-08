@@ -70,7 +70,7 @@ const About = () => {
           <div className="my-12">
             <Image
               className="h-auto w-full"
-              src="/about/content-1.webp"
+              src="/about/content-1.svg"
               alt=""
               width={1600}
               height={600}
@@ -230,8 +230,8 @@ const About = () => {
             className="h-auto w-full"
             src="/about/xiangmuqiyuan.webp"
             alt=""
-            width={1600}
-            height={600}
+            width={2000}
+            height={1200}
           />
         </div>
       </section>
@@ -241,8 +241,8 @@ const About = () => {
             className="h-auto w-full"
             src="/about/ganxing.webp"
             alt=""
-            width={1600}
-            height={600}
+            width={2000}
+            height={1200}
           />
         </div>
       </section>
@@ -261,7 +261,56 @@ const About = () => {
         <div className="container">
           <Image
             className="h-auto w-full"
-            src="/about/zhicuo.webp"
+            src="/about/zhizuo-head.webp"
+            alt=""
+            width={1600}
+            height={600}
+          />
+          <div className="mb-6 grid grid-cols-3 gap-4">
+            <video src="/about/v4.mov" autoPlay loop muted />
+            <Image
+              className="mb-12 h-auto w-full"
+              src="/about/card-2.webp"
+              alt=""
+              width={1600}
+              height={600}
+            />
+
+            <Image
+              className="mb-12 h-auto w-full"
+              src="/about/card-3.webp"
+              alt=""
+              width={1600}
+              height={600}
+            />
+
+            <Image
+              className="mb-12 h-auto w-full"
+              src="/about/card-4.webp"
+              alt=""
+              width={1600}
+              height={600}
+            />
+
+            <Image
+              className="mb-12 h-auto w-full"
+              src="/about/card-5.webp"
+              alt=""
+              width={1600}
+              height={600}
+            />
+
+            <Image
+              className="mb-12 h-auto w-full"
+              src="/about/card-6.webp"
+              alt=""
+              width={1600}
+              height={600}
+            />
+          </div>
+          <Image
+            className="mb-6 mt-12 h-auto w-full"
+            src="/about/zhizuo-head-2.webp"
             alt=""
             width={1600}
             height={600}
