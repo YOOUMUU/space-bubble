@@ -262,7 +262,7 @@ const About = () => {
       <section className="py-24" id="ganxing">
         <div className="container">
           <Image
-            className="h-[22px] w-auto"
+            className="h-[40px] w-auto"
             src="/about/ganxing-head-head.svg"
             alt=""
             width={1200}
