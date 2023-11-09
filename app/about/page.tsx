@@ -233,13 +233,23 @@ const About = () => {
             width={1200}
             height={300}
           />
-          <Image
-            className="h-auto w-full"
-            src="/about/qiyuan-text.png"
-            alt=""
-            width={1200}
-            height={300}
-          />
+          <div className="flex-center relative flex">
+            <Image
+              className="h-auto w-full"
+              src="/about/text-bg.png"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+            <Image
+              className="absolute w-[90%]"
+              src="/about/qiyuan-text.svg"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+          </div>
+
           <Image
             className="h-auto w-full"
             src="/about/qiyuan-img.png"
@@ -286,23 +296,64 @@ const About = () => {
       <section className="py-24" id="diaocha">
         <div className="container">
           <Image
-            className="h-auto w-full"
-            src="/about/diaocha.webp"
+            className="h-[22px] w-auto"
+            src="/about/diaocha-head-head.svg"
             alt=""
-            width={1600}
-            height={600}
+            width={1200}
+            height={300}
+          />
+          <div className="flex-center relative flex">
+            <Image
+              className="h-auto w-full"
+              src="/about/text-bg.png"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+            <Image
+              className="absolute w-[90%]"
+              src="/about/diaocha-text.svg"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+          </div>
+
+          <Image
+            className="h-auto w-full"
+            src="/about/diaocha-img.png"
+            alt=""
+            width={5000}
+            height={1200}
           />
         </div>
       </section>
       <section className="py-24" id="zhizuo">
         <div className="container">
           <Image
-            className="h-auto w-full"
-            src="/about/zhizuo-head.webp"
+            className="h-[22px] w-auto"
+            src="/about/zhizuo-head-head.svg"
             alt=""
-            width={1600}
-            height={600}
+            width={1200}
+            height={300}
           />
+          <div className="flex-center relative flex">
+            <Image
+              className="h-auto w-full"
+              src="/about/text-bg.png"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+            <Image
+              className="absolute w-[40%]"
+              src="/about/zhizuo-text-1.svg"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+          </div>
+
           <div className="mb-6 grid grid-cols-3 gap-6">
             <video src="/about/v4.mov" autoPlay loop muted />
             <Image
@@ -345,32 +396,57 @@ const About = () => {
               height={600}
             />
           </div>
-          <Image
-            className="mb-4 mt-12 h-auto w-full"
-            src="/about/zhizuo-head-2.webp"
-            alt=""
-            width={1600}
-            height={600}
-          />
+          <div className="flex-center relative flex">
+            <Image
+              className="h-auto w-full"
+              src="/about/text-bg.png"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+            <Image
+              className="absolute w-[16%]"
+              src="/about/zhizuo-text-2.svg"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+          </div>
           <div className="flex-center mb-12 grid w-full grid-cols-[1.02fr,2fr] gap-12">
             <video src="/about/v1.mp4" autoPlay loop muted />
             <video src="/about/v2.mp4" autoPlay loop muted />
           </div>
+          <div className="flex-center relative flex">
+            <Image
+              className="h-auto w-full"
+              src="/about/text-bg.png"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+            <Image
+              className="absolute w-[7%]"
+              src="/about/zhizuo-text-3.svg"
+              alt=""
+              width={5000}
+              height={1200}
+            />
+          </div>
+          <video src="/about/v3.mov" autoPlay loop muted className="mt-8" />
+        </div>
+      </section>
+      <section className="mb-12 pt-16">
+        <div className="container">
           <Image
             className="h-auto w-full"
-            src="/about/code.webp"
+            src="/about/footer-1.svg"
             alt=""
             width={1600}
             height={600}
           />
-          <video src="/about/v3.mov" autoPlay loop muted className="mt-8" />
-        </div>
-      </section>
-      <section className="mb-12 pt-24">
-        <div className="container">
           <Image
-            className="h-auto w-full"
-            src="/about/footer.webp"
+            className="mx-auto mt-8 h-auto w-24"
+            src="/about/footer2.png"
             alt=""
             width={1600}
             height={600}
