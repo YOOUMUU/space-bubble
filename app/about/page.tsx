@@ -2,6 +2,7 @@
 import AboutNav from '@/components/AboutNav';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import ImageSlider from '@/components/ImageSlider';
 
 const About = () => {
   const [currentImage, setCurrentImage] = useState(1);
@@ -356,44 +357,47 @@ const About = () => {
 
           <div className="mb-6 grid grid-cols-3 gap-6">
             <video src="/about/v4.mov" autoPlay loop muted />
-            <Image
-              className="h-auto w-full"
-              src="/about/card-2.webp"
-              alt=""
-              width={1600}
-              height={600}
+            <ImageSlider
+              images={[
+                '/about/process/7.webp',
+                '/about/process/1.webp',
+                '/about/process/12.webp',
+                '/about/process/8.webp',
+              ]}
             />
 
-            <Image
-              className="h-auto w-full"
-              src="/about/card-3.webp"
-              alt=""
-              width={1600}
-              height={600}
+            <ImageSlider
+              images={[
+                '/about/process/18.webp',
+                '/about/process/13.webp',
+                '/about/process/5.webp',
+                '/about/process/2.webp',
+              ]}
             />
 
-            <Image
-              className="h-auto w-full"
-              src="/about/card-4.webp"
-              alt=""
-              width={1600}
-              height={600}
+            <ImageSlider
+              images={[
+                '/about/process/3.webp',
+                '/about/process/16.webp',
+                '/about/process/9.webp',
+                '/about/process/11.webp',
+              ]}
             />
 
-            <Image
-              className="h-auto w-full"
-              src="/about/card-5.webp"
-              alt=""
-              width={1600}
-              height={600}
+            <ImageSlider
+              images={[
+                '/about/process/17.webp',
+                '/about/process/15.webp',
+                '/about/process/14.webp',
+              ]}
             />
 
-            <Image
-              className="h-auto w-full"
-              src="/about/card-6.webp"
-              alt=""
-              width={1600}
-              height={600}
+            <ImageSlider
+              images={[
+                '/about/process/6.webp',
+                '/about/process/10.webp',
+                '/about/process/4.webp',
+              ]}
             />
           </div>
           <div className="flex-center relative flex">
