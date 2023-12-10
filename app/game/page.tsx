@@ -212,7 +212,12 @@ const Game = () => {
       </audio>
 
       {/* Click */}
-      <div className="flex-center absolute top-[-8vh] z-[200] mt-40 flex w-full">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, delay: 4.5 }}
+        className="flex-center absolute top-[-8vh] z-[200] mt-40 flex w-full"
+      >
         {isChouqian ? (
           <div className="z-40 flex cursor-pointer flex-col items-center">
             <motion.div
@@ -253,7 +258,7 @@ const Game = () => {
             />
           </div>
         )}
-      </div>
+      </motion.div>
 
       {/* BG */}
       <div className="absolute z-0 h-full w-full object-cover">
@@ -269,15 +274,21 @@ const Game = () => {
       <section className="flex-center absolute z-10 flex h-screen w-screen">
         <div className="w-full px-[8vw]">
           <div className="relative grid h-full grid-cols-9 gap-10 gap-x-4">
-            {cardNumbers.map((number) => (
-              <ClickCard
+            {cardNumbers.map((number, index) => (
+              <motion.div
+                initial={{ y: -60, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.2, delay: 0.2 * index }}
                 key={number}
-                number={number}
-                position={position}
-                frontImage={`/cards/top/${number}.webp`}
-                onCoordinatesUpdated={handleCoordinatesUpdated}
-                isSelected={number === selectedCardNumber}
-              />
+              >
+                <ClickCard
+                  number={number}
+                  position={position}
+                  frontImage={`/cards/top/${number}.webp`}
+                  onCoordinatesUpdated={handleCoordinatesUpdated}
+                  isSelected={number === selectedCardNumber}
+                />
+              </motion.div>
             ))}
 
             {/* Qizi */}
@@ -294,7 +305,12 @@ const Game = () => {
                   delay: 2,
                 }}
               >
-                <div className="relative top-0 w-[6vw]">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 20 * 0.2 }}
+                  className="relative top-0 w-[6vw]"
+                >
                   <Image
                     className={`w-[6vw] transition duration-1000 ease-in-out ${
                       isForward ? '' : 'scale-x-[-100%]'
@@ -313,12 +329,17 @@ const Game = () => {
                     width={600}
                     height={1000}
                   />
-                </div>
+                </motion.div>
               </motion.div>
             </div>
 
             {/* Arrow1 */}
-            <div className="flex-center absolute right-[-4vw] top-0 flex h-full">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2, delay: 18 * 0.2 }}
+              className="flex-center absolute right-[-4vw] top-0 flex h-full"
+            >
               <Image
                 className="w-[4vw]"
                 src="/qian/line1.svg"
@@ -326,10 +347,15 @@ const Game = () => {
                 width={600}
                 height={1000}
               />
-            </div>
+            </motion.div>
 
             {/* Arrow2 */}
-            <div className="absolute bottom-0 left-[-4vw] flex h-full items-end justify-end">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.2, delay: 18 * 0.2 }}
+              className="absolute bottom-0 left-[-4vw] flex h-full items-end justify-end"
+            >
               <Image
                 className="mb-[150%] w-[3vw]"
                 src="/qian/line2.svg"
@@ -337,7 +363,7 @@ const Game = () => {
                 width={600}
                 height={1000}
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -356,13 +382,18 @@ const Game = () => {
       )}
 
       {/* Qian */}
-      <div className="absolute bottom-0 z-40 flex w-full flex-row items-end justify-center gap-16">
+      <motion.div
+        initial={{ y: 60, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.4, delay: 4.5 }}
+        className="absolute bottom-0 z-40 flex w-full flex-row items-end justify-center gap-16"
+      >
         <Qian number={4} choosen={step === 4} />
         <Qian number={3} choosen={step === 3} />
         <Qian number={2} choosen={step === 2} />
         <Qian number={1} choosen={step === 1} />
         <Qian number={0} choosen={step === 0} />
-      </div>
+      </motion.div>
     </>
   );
 };
