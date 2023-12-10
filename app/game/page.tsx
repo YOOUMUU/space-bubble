@@ -35,6 +35,7 @@ const Game = () => {
 
   const backgroundAudioRef = useRef<HTMLAudioElement>(null);
   const fireAudioRef = useRef<HTMLAudioElement>(null);
+  const noAudioRef = useRef<HTMLAudioElement>(null);
 
   const [isAudioMuted, setIsAudioMuted] = useState(true);
 
@@ -48,6 +49,10 @@ const Game = () => {
     }
     if (fireAudioRef.current) {
       fireAudioRef.current.muted = isAudioMuted;
+    }
+
+    if (noAudioRef.current) {
+      noAudioRef.current.muted = isAudioMuted;
     }
   };
 
@@ -68,14 +73,14 @@ const Game = () => {
         width: '100vw',
         height: '100vh',
         angle: 90,
-        spread: 240,
-        startVelocity: 30,
+        spread: 450,
+        startVelocity: 60,
         duration: 3000,
-        colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
+        colors: ['#98485C', '#BC284D', '#D21436', '#8A1228', '#620A1A'],
         decay: 0.9,
-        gravity: 1.0,
+        gravity: 0.8,
         drift: 0,
-        scalar: 1,
+        scalar: 2,
         resize: true,
       });
     }
@@ -91,6 +96,9 @@ const Game = () => {
     if (fireAudioRef.current) {
       fireAudioRef.current.pause();
       fireAudioRef.current.currentTime = 0;
+    }
+    if (noAudioRef.current) {
+      noAudioRef.current.play();
     }
   };
 
@@ -180,6 +188,10 @@ const Game = () => {
       />
 
       {/* Audios */}
+      <audio ref={noAudioRef} muted={isAudioMuted}>
+        <source src="/voices/no.mp3" type="audio/mpeg" />
+      </audio>
+
       <button
         className="absolute bottom-12 right-12 z-50 w-12"
         onClick={toggleAudioMute}
@@ -279,7 +291,7 @@ const Game = () => {
                 transition={{
                   duration: qiziDuration,
                   ease: 'easeInOut',
-                  delay: 1,
+                  delay: 2,
                 }}
               >
                 <div className="relative top-0 w-[6vw]">
@@ -339,6 +351,7 @@ const Game = () => {
             setIsClicked(false);
             setIsChouqian(true);
           }}
+          isAudioMuted={isAudioMuted}
         />
       )}
 
