@@ -6,6 +6,7 @@ import ClickCard from '@/components/ClickCard';
 import GameCard from '@/components/GameCard';
 import Qian from '@/components/Qian';
 import { motion } from 'framer-motion';
+import ReactCanvasConfetti from 'react-canvas-confetti';
 
 const Game = () => {
   const [isFirstClick, setIsFirstClick] = useState(true);
@@ -22,6 +23,32 @@ const Game = () => {
   const [pieceCoordinates, setPieceCoordinates] = useState({ x: 0, y: 0 });
   const [qiziDuration, setDuration] = useState(1);
   const [isForward, setIsForward] = useState(true);
+
+  const confettiRef = useRef<any>(null);
+  const makeShot = useCallback(() => {
+    if (confettiRef.current) {
+      confettiRef.current({
+        particleCount: 400,
+        width: '100vw',
+        height: '100vh',
+        angle: 90,
+        spread: 240,
+        startVelocity: 30,
+        duration: 3000,
+        colors: ['#a864fd', '#29cdff', '#78ff44', '#ff718d', '#fdff6a'],
+        decay: 0.9,
+        gravity: 1.0,
+        drift: 0,
+        scalar: 1,
+        resize: true,
+      });
+    }
+  }, []);
+
+  const handleNoClick = () => {
+    setIsClicked(false);
+    makeShot();
+  };
 
   const movePiece = async () => {
     let steps;
@@ -91,8 +118,13 @@ const Game = () => {
     <>
       <Nav />
 
+      <ReactCanvasConfetti
+        className="absolute h-screen w-screen"
+        refConfetti={(instance) => (confettiRef.current = instance)}
+      />
+
       {/* Click */}
-      <div className="flex-center absolute top-[-8vh] z-40 mt-40 flex w-full">
+      <div className="flex-center absolute top-[-8vh] z-[200] mt-40 flex w-full">
         {isClicked ? (
           <div>
             <Image
@@ -152,13 +184,25 @@ const Game = () => {
                 animate={{ x: pieceCoordinates.x, y: pieceCoordinates.y }}
                 transition={{ duration: qiziDuration, ease: 'easeInOut' }}
               >
-                <Image
-                  className={`w-[6vw] ${isForward ? '' : 'scale-x-[-100%]'}`}
-                  src="/qian/qizi.webp"
-                  alt="bg"
-                  width={600}
-                  height={1000}
-                />
+                <div className="relative top-0 w-[6vw]">
+                  <Image
+                    className={`w-[6vw] ${isForward ? '' : 'scale-x-[-100%]'}`}
+                    src="/qian/qizi-1.webp"
+                    alt="bg"
+                    width={600}
+                    height={1000}
+                  />
+
+                  <Image
+                    className={`absolute bottom-[34px] w-6 opacity-80 ${
+                      isForward ? 'right-[12px]' : 'left-[12px]'
+                    }`}
+                    src="/qian/qizi-fire.gif"
+                    alt="bg"
+                    width={600}
+                    height={1000}
+                  />
+                </div>
               </motion.div>
             </div>
 
@@ -189,10 +233,7 @@ const Game = () => {
 
       {/* Game Card */}
       {isClicked && (
-        <GameCard
-          number={position}
-          toggleVisibility={() => setIsClicked(false)}
-        />
+        <GameCard number={position} handleNoClick={handleNoClick} />
       )}
 
       {/* Qian */}
