@@ -3,11 +3,15 @@ import Image from 'next/image';
 import Nav from '@/components/Nav';
 import Link from 'next/link';
 import FadeInTransition from '@/components/FadeInTransition';
+import Overlay from '@/components/Overlay';
 
 const page = () => {
   return (
     <>
       <FadeInTransition>
+        <Overlay>
+          <div></div>
+        </Overlay>
         <Nav />
         <section>
           <div className="absolute z-10 flex h-screen w-screen flex-col items-end justify-center px-16">

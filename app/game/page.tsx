@@ -181,7 +181,6 @@ const Game = () => {
   return (
     <>
       <Nav />
-
       <ReactCanvasConfetti
         className="absolute h-screen w-screen"
         refConfetti={(instance) => (confettiRef.current = instance)}
@@ -383,8 +382,8 @@ const Game = () => {
 
       {/* Qian */}
       <motion.div
-        initial={{ y: 60, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.4, delay: 4.5 }}
         className="absolute bottom-0 z-40 flex w-full flex-row items-end justify-center gap-16"
       >
