@@ -33,17 +33,21 @@ const Game = () => {
   const buttonControls = useAnimation();
   const buttonRef = useRef(null);
 
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const backgroundAudioRef = useRef<HTMLAudioElement>(null);
+  const fireAudioRef = useRef<HTMLAudioElement>(null);
 
-  const toggleAudioPlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
+  const [isAudioMuted, setIsAudioMuted] = useState(true);
+
+  const toggleAudioMute = () => {
+    setIsAudioMuted(!isAudioMuted);
+    if (backgroundAudioRef.current) {
+      backgroundAudioRef.current.muted = isAudioMuted;
+      if (isAudioMuted) {
+        backgroundAudioRef.current.play();
       }
-      setIsPlaying(!isPlaying);
+    }
+    if (fireAudioRef.current) {
+      fireAudioRef.current.muted = isAudioMuted;
     }
   };
 
@@ -84,6 +88,10 @@ const Game = () => {
     setQiziImage('/qian/qizi-1.webp');
     setShowFire(false);
     setSelectedCardNumber(null);
+    if (fireAudioRef.current) {
+      fireAudioRef.current.pause();
+      fireAudioRef.current.currentTime = 0;
+    }
   };
 
   const movePiece = async () => {
@@ -137,6 +145,10 @@ const Game = () => {
     }, steps * 1000);
 
     setIsChouqian(false);
+
+    if (!isAudioMuted && fireAudioRef.current) {
+      fireAudioRef.current.play();
+    }
   };
 
   const qiziRef = useRef<HTMLDivElement>(null);
@@ -170,7 +182,7 @@ const Game = () => {
       {/* Audios */}
       <button
         className="absolute bottom-12 right-12 z-50 w-12"
-        onClick={toggleAudioPlay}
+        onClick={toggleAudioMute}
       >
         <Image
           src="/qian/voice_control.svg"
@@ -178,12 +190,12 @@ const Game = () => {
           width={100}
           height={100}
         />
-        {!isPlaying && (
+        {isAudioMuted && (
           <div className="absolute right-6 top-0 z-20 h-12 w-[4px] rotate-[-45deg] bg-[#98485C]"></div>
         )}
       </button>
 
-      <audio ref={audioRef} loop>
+      <audio ref={backgroundAudioRef} muted={isAudioMuted} loop>
         <source src="/voices/background-voice.mp3" type="audio/mpeg" />
       </audio>
 
@@ -257,6 +269,9 @@ const Game = () => {
             ))}
 
             {/* Qizi */}
+            <audio ref={fireAudioRef} muted={isAudioMuted} loop>
+              <source src="/voices/fire-burning.mp3" type="audio/mpeg" />
+            </audio>
             <div className="absolute left-[-6vw] top-0" ref={qiziRef}>
               <motion.div
                 initial={{ x: pieceCoordinates.x, y: pieceCoordinates.y }}
