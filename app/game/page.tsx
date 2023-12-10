@@ -33,6 +33,20 @@ const Game = () => {
   const buttonControls = useAnimation();
   const buttonRef = useRef(null);
 
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const toggleAudioPlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   useEffect(() => {
     if (isChouqian) {
       buttonControls.start({
@@ -153,13 +167,36 @@ const Game = () => {
         refConfetti={(instance) => (confettiRef.current = instance)}
       />
 
+      {/* Audios */}
+      <button
+        className="absolute bottom-12 right-12 z-50 w-12"
+        onClick={toggleAudioPlay}
+      >
+        <Image
+          src="/qian/voice_control.svg"
+          alt="bg"
+          width={100}
+          height={100}
+        />
+        {!isPlaying && (
+          <div className="absolute right-6 top-0 z-20 h-12 w-[4px] rotate-[-45deg] bg-[#98485C]"></div>
+        )}
+      </button>
+
+      <audio ref={audioRef} loop>
+        <source src="/voices/background-voice.mp3" type="audio/mpeg" />
+      </audio>
+
       {/* Click */}
       <div className="flex-center absolute top-[-8vh] z-[200] mt-40 flex w-full">
         {isChouqian ? (
           <div className="z-40 flex cursor-pointer flex-col items-center">
-            <motion.div animate={buttonControls} className="h-24 w-auto pl-4">
+            <motion.div
+              animate={buttonControls}
+              className="h-[8vh] w-auto pl-4"
+            >
               <Image
-                className="h-24 w-auto pl-4"
+                className="h-[8vh] w-auto pl-[0.5vh]"
                 src="/qian/chouqian_tips.svg"
                 alt="btn"
                 width={800}
@@ -173,7 +210,7 @@ const Game = () => {
               onClick={movePiece}
             >
               <Image
-                className="h-12 w-auto"
+                className="h-[4vh] w-auto"
                 src="/qian/chouqian_btn.svg"
                 alt="btn"
                 width={800}
@@ -184,7 +221,7 @@ const Game = () => {
         ) : (
           <div>
             <Image
-              className="mt-[-2vh] h-32 w-auto"
+              className="mt-[-2vh] h-[10vh] w-auto"
               src={`/steps/step-${step}.webp`}
               alt="btn"
               width={800}
