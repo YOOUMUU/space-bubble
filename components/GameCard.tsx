@@ -6,9 +6,10 @@ import Link from 'next/link';
 type Props = {
   number: number;
   handleNoClick: () => void;
+  handleFinalClick: () => void;
 };
 
-const GameCard = ({ number, handleNoClick }: Props) => {
+const GameCard = ({ number, handleNoClick, handleFinalClick }: Props) => {
   const ending =
     number >= 1 && number <= 4
       ? '/ending/2'
@@ -126,18 +127,7 @@ const GameCard = ({ number, handleNoClick }: Props) => {
               height={40}
             />
 
-            {number === 18 ? (
-              <Link href="/ending">
-                <Image
-                  className="absolute top-0 h-8 cursor-pointer opacity-0 duration-150 hover:opacity-100"
-                  src={`/queation/t-shadow.webp`}
-                  alt="Front"
-                  width={40}
-                  height={40}
-                  onClick={handleNoClick}
-                />
-              </Link>
-            ) : (
+            {number < 18 ? (
               <Image
                 className="absolute top-0 h-8 cursor-pointer opacity-0 duration-150 hover:opacity-100"
                 src={`/queation/t-shadow.webp`}
@@ -146,6 +136,19 @@ const GameCard = ({ number, handleNoClick }: Props) => {
                 height={40}
                 onClick={handleNoClick}
               />
+            ) : (
+              <Link
+                href="/ending"
+                className="absolute top-0 h-8 cursor-pointer opacity-0 duration-150 hover:opacity-100"
+              >
+                <Image
+                  src={`/queation/t-shadow.webp`}
+                  alt="Front"
+                  width={40}
+                  height={40}
+                  onClick={handleFinalClick}
+                />
+              </Link>
             )}
           </div>
         </motion.div>

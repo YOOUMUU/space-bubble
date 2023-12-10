@@ -7,6 +7,7 @@ type Props = {
   position: number;
   frontImage: string;
   onCoordinatesUpdated: (coordinates: { x: number; y: number }) => void;
+  isSelected: boolean;
 };
 
 const ClickCard = ({
@@ -14,6 +15,7 @@ const ClickCard = ({
   position,
   frontImage,
   onCoordinatesUpdated,
+  isSelected,
 }: Props) => {
   const rotateContainerRef = useRef(null);
 
@@ -62,6 +64,8 @@ const ClickCard = ({
     updateCoordinates();
   }, [updateCoordinates]);
 
+  const cardClassName = isSelected ? 'shadow-lg shadow-[#98485C]' : 'shadow-xl';
+
   return (
     <div ref={rotateContainerRef} className="relative h-full w-full border">
       <Image
@@ -69,7 +73,7 @@ const ClickCard = ({
         alt="Front"
         width={800}
         height={1000}
-        className="shadow-xl"
+        className={`duration-500 ${cardClassName}`}
         onLoad={handleImageLoad}
       />
     </div>

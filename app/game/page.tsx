@@ -15,6 +15,8 @@ const Game = () => {
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
   ];
   const [isClicked, setIsClicked] = useState(false);
+  const [qiziImage, setQiziImage] = useState('/qian/qizi-1.webp');
+  const [showFire, setShowFire] = useState(false);
 
   const TOTAL_CARDS = 18;
   const [position, setPosition] = useState(0);
@@ -23,6 +25,10 @@ const Game = () => {
   const [pieceCoordinates, setPieceCoordinates] = useState({ x: 0, y: 0 });
   const [qiziDuration, setDuration] = useState(1);
   const [isForward, setIsForward] = useState(true);
+
+  const [selectedCardNumber, setSelectedCardNumber] = useState<number | null>(
+    null
+  );
 
   const confettiRef = useRef<any>(null);
   const makeShot = useCallback(() => {
@@ -48,10 +54,18 @@ const Game = () => {
   const handleNoClick = () => {
     setIsClicked(false);
     makeShot();
+    setQiziImage('/qian/qizi-1.webp');
+    setShowFire(false);
+    setSelectedCardNumber(null);
   };
 
   const movePiece = async () => {
     let steps;
+
+    setTimeout(() => {
+      setQiziImage('/qian/qizi-2.webp');
+      setShowFire(true);
+    }, 500);
 
     if (isFirstClick) {
       steps = Math.floor(Math.random() * 4) + 1;
@@ -77,6 +91,19 @@ const Game = () => {
     }
 
     setPosition(newPosition);
+    const positionMap: { [key: number]: number } = {
+      10: 18,
+      11: 17,
+      12: 16,
+      13: 15,
+      14: 14,
+      15: 13,
+      16: 12,
+      17: 11,
+      18: 10,
+    };
+
+    setSelectedCardNumber(positionMap[newPosition] ?? newPosition);
 
     setTimeout(() => {
       setIsClicked(true);
@@ -174,6 +201,7 @@ const Game = () => {
                 position={position}
                 frontImage={`/cards/top/${number}.webp`}
                 onCoordinatesUpdated={handleCoordinatesUpdated}
+                isSelected={number === selectedCardNumber}
               />
             ))}
 
@@ -182,21 +210,26 @@ const Game = () => {
               <motion.div
                 initial={{ x: pieceCoordinates.x, y: pieceCoordinates.y }}
                 animate={{ x: pieceCoordinates.x, y: pieceCoordinates.y }}
-                transition={{ duration: qiziDuration, ease: 'easeInOut' }}
+                transition={{
+                  duration: qiziDuration,
+                  ease: 'easeInOut',
+                  delay: 1,
+                }}
               >
                 <div className="relative top-0 w-[6vw]">
                   <Image
-                    className={`w-[6vw] ${isForward ? '' : 'scale-x-[-100%]'}`}
-                    src="/qian/qizi-1.webp"
+                    className={`w-[6vw] transition duration-1000 ease-in-out ${
+                      isForward ? '' : 'scale-x-[-100%]'
+                    }`}
+                    src={qiziImage}
                     alt="bg"
                     width={600}
                     height={1000}
                   />
-
                   <Image
-                    className={`absolute bottom-[34px] w-6 opacity-80 ${
-                      isForward ? 'right-[12px]' : 'left-[12px]'
-                    }`}
+                    className={`absolute bottom-[34px] w-6 opacity-80 transition duration-1000 ease-in-out ${
+                      showFire ? '' : 'hidden'
+                    } ${isForward ? 'right-[12px]' : 'left-[12px]'}`}
                     src="/qian/qizi-fire.gif"
                     alt="bg"
                     width={600}
@@ -233,7 +266,11 @@ const Game = () => {
 
       {/* Game Card */}
       {isClicked && (
-        <GameCard number={position} handleNoClick={handleNoClick} />
+        <GameCard
+          number={position}
+          handleNoClick={handleNoClick}
+          handleFinalClick={() => setIsClicked(false)}
+        />
       )}
 
       {/* Qian */}
