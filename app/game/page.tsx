@@ -1,20 +1,20 @@
 'use client';
 import Nav from '@/components/Nav';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import ClickCard from '@/components/ClickCard';
 import GameCard from '@/components/GameCard';
 import Qian from '@/components/Qian';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 
 const Game = () => {
   const [isFirstClick, setIsFirstClick] = useState(true);
-  const [imageSrc, setImageSrc] = useState('/qian/chouqian.svg');
   const cardNumbers = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
   ];
   const [isClicked, setIsClicked] = useState(false);
+  const [isChouqian, setIsChouqian] = useState(true);
   const [qiziImage, setQiziImage] = useState('/qian/qizi-1.webp');
   const [showFire, setShowFire] = useState(false);
 
@@ -29,6 +29,18 @@ const Game = () => {
   const [selectedCardNumber, setSelectedCardNumber] = useState<number | null>(
     null
   );
+
+  const buttonControls = useAnimation();
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    if (isChouqian) {
+      buttonControls.start({
+        y: [0, -20, 0],
+        transition: { repeat: Infinity, duration: 1 },
+      });
+    }
+  }, [buttonControls, isChouqian]);
 
   const confettiRef = useRef<any>(null);
   const makeShot = useCallback(() => {
@@ -53,6 +65,7 @@ const Game = () => {
 
   const handleNoClick = () => {
     setIsClicked(false);
+    setIsChouqian(true);
     makeShot();
     setQiziImage('/qian/qizi-1.webp');
     setShowFire(false);
@@ -108,19 +121,9 @@ const Game = () => {
     setTimeout(() => {
       setIsClicked(true);
     }, steps * 1000);
-  };
 
-  const handleMouseOver = () => {
-    setImageSrc('/qian/chouqian-white.svg');
+    setIsChouqian(false);
   };
-
-  const handleMouseOut = () => {
-    setImageSrc('/qian/chouqian.svg');
-  };
-
-  useEffect(() => {
-    setImageSrc('/qian/chouqian.svg');
-  }, [isClicked]);
 
   const qiziRef = useRef<HTMLDivElement>(null);
 
@@ -152,31 +155,42 @@ const Game = () => {
 
       {/* Click */}
       <div className="flex-center absolute top-[-8vh] z-[200] mt-40 flex w-full">
-        {isClicked ? (
+        {isChouqian ? (
+          <div className="z-40 flex cursor-pointer flex-col items-center">
+            <motion.div animate={buttonControls} className="h-24 w-auto pl-4">
+              <Image
+                className="h-24 w-auto pl-4"
+                src="/qian/chouqian_tips.svg"
+                alt="btn"
+                width={800}
+                height={1000}
+              />
+            </motion.div>
+            <button
+              ref={buttonRef}
+              onMouseEnter={() => buttonControls.start({ opacity: 0 })}
+              onMouseLeave={() => buttonControls.start({ opacity: 100 })}
+              onClick={movePiece}
+            >
+              <Image
+                className="h-12 w-auto"
+                src="/qian/chouqian_btn.svg"
+                alt="btn"
+                width={800}
+                height={1000}
+              />
+            </button>
+          </div>
+        ) : (
           <div>
             <Image
-              className="mt-[-2vh] h-20 w-auto"
+              className="mt-[-2vh] h-32 w-auto"
               src={`/steps/step-${step}.webp`}
               alt="btn"
               width={800}
               height={1000}
             />
           </div>
-        ) : (
-          <button
-            onMouseOver={handleMouseOver}
-            onMouseOut={handleMouseOut}
-            onClick={movePiece}
-            className="z-40 cursor-pointer rounded border-2 border-[#9D495E] px-8 py-2 text-[#9D495E] duration-150 hover:bg-[#9D495E] hover:text-white"
-          >
-            <Image
-              className="h-5 w-auto"
-              src={imageSrc}
-              alt="btn"
-              width={800}
-              height={1000}
-            />
-          </button>
         )}
       </div>
 
@@ -227,9 +241,9 @@ const Game = () => {
                     height={1000}
                   />
                   <Image
-                    className={`absolute bottom-[34px] w-6 opacity-80 transition duration-1000 ease-in-out ${
+                    className={`absolute bottom-[34%] w-[25%] opacity-80 transition duration-1000 ease-in-out ${
                       showFire ? '' : 'hidden'
-                    } ${isForward ? 'right-[12px]' : 'left-[12px]'}`}
+                    } ${isForward ? 'right-[20%]' : 'left-[20%]'}`}
                     src="/qian/qizi-fire.gif"
                     alt="bg"
                     width={600}
@@ -269,7 +283,10 @@ const Game = () => {
         <GameCard
           number={position}
           handleNoClick={handleNoClick}
-          handleFinalClick={() => setIsClicked(false)}
+          handleFinalClick={() => {
+            setIsClicked(false);
+            setIsChouqian(true);
+          }}
         />
       )}
 

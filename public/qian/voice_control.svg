@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 91 67" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:10;">
+    <g transform="matrix(1,0,0,1,-910.512,-52.1498)">
+        <g transform="matrix(4.16667,0,0,4.16667,861.567,0)">
+            <rect id="页面-2" serif:id="页面 2" x="0" y="0" width="42.52" height="42.52" style="fill:none;"/>
+            <g id="页面-21" serif:id="页面 2">
+                <g id="图层-4" serif:id="图层 4">
+                </g>
+                <g id="图层-11" serif:id="图层 11">
+                    <g transform="matrix(0.24,-0,-0,0.24,11.7467,12.516)">
+                        <use xlink:href="#_Image1" x="0" y="5.976" width="80px" height="61px"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+    <defs>
+        <image id="_Image1" width="80px" height="61px" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAA9CAYAAAA6e+4pAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACW0lEQVR4nO2cMcvUQBCG380e36koouBXiCjYCRaC2Aj+g/0JWor4C1ZwyxSm0tLaXgtJ4V+xFD8+UBsLRU8xsVVvLpfcZHKzcZ7mYJPMzL68s3eXzZ3DSIQUPwM4O1a8bfxYrT4eLJeHU+Wry8pR48VUBYyNc27K2ttNB7IVEADpiKnJVsDWBGRjAnIo3KT6zXINVFG7iiJ2REULL4TjPwbwUyJw4X0DOQM8AnC+z4nSAj6ty+qbcI7RCSk+RE8Bc25hSf5dHjYuF9ICqlindqB33aIt3LatDylKLxMS6BCwaZp33vtzkjkkaJrmqCj+as69tXCWDPmaaAISOBOQjY410Ht/uS6rL5I5JAgpHvc91xxIs+bAkOK87kgLo2YNzPWDNKWLOXAAahyYK2oEzLWFqbqthQegxoG5osaBc2phEnMgjQnIxFqYiTmQiRoH5ooaB1oL/6dYCzNR48A5tbA5cABqHJgr42wqhRSfALjzR8BNrwBwhlOINCHFZwBuod9cKF3IuWzblbsG4HbPGik2Ptm5B65DYC7SLaxJQC4mIJOGGjQB+2MOZGICMjEBmexFwNlQlxUpoAspvu+47gKAJSPvMdbfve7XZfWGEZMkpHgKwNuOUw4BHDBSHBFjdxcALjGCbuMiMXZSKJeD7Fyo2CeshZmYgExMQCYmIBMTkIkJyGQB4FXH8SsAbjLiv8b6z117PwE/kF/onstVADcY8V8SYx867xiHFO8BeMFIerouq6+M60cjpPgAwPNdr5/d/8ZowQRkYgIy2baptALwaYpCJuA7BObyG0hQW7HuQ3wKAAAAAElFTkSuQmCC"/>
+    </defs>
+</svg>
