@@ -3,9 +3,13 @@ import React, { useEffect, useState } from 'react';
 
 const FadeInTransition = ({ children }: { children: React.ReactNode }) => {
   const [fadeIn, setFadeIn] = useState(true);
+  const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
     setFadeIn(false);
+    setTimeout(() => {
+      setIsHidden(true);
+    }, 2000);
   }, []);
 
   return (
@@ -18,9 +22,9 @@ const FadeInTransition = ({ children }: { children: React.ReactNode }) => {
           width: '100%',
           height: '100%',
           backgroundColor: 'black',
-          transition: 'opacity 1s ease-in-out',
+          transition: 'opacity 2s ease-in-out',
           opacity: fadeIn ? 1 : 0,
-          display: fadeIn ? 'block' : 'none',
+          display: !isHidden ? 'block' : 'none',
           zIndex: 9999,
         }}
       />
