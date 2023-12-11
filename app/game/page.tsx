@@ -215,7 +215,7 @@ const Game = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4, delay: 4.5 }}
-        className="flex-center absolute top-[-8vh] z-[200] mt-40 flex w-full"
+        className="flex-center absolute top-[-8vh] z-[200] mt-[16vh] flex w-full"
       >
         {isChouqian ? (
           <div className="z-40 flex cursor-pointer flex-col items-center">
@@ -224,7 +224,7 @@ const Game = () => {
               className="h-[8vh] w-auto pl-4"
             >
               <Image
-                className="h-[8vh] w-auto pl-[0.5vh]"
+                className="h-[8vh] w-auto pr-[0.5vw]"
                 src="/qian/chouqian_tips.svg"
                 alt="btn"
                 width={800}

@@ -77,7 +77,7 @@ const GameCard = ({
           animate={{ scale: 1, transition: { delay: 1.5, duration: 1 } }}
           className="z-50"
         >
-          <div className="rotate-container relative aspect-[707/1000] h-auto w-[240px] transition-transform duration-700 ease-in-out">
+          <div className="rotate-container relative aspect-[707/1000] h-auto w-[32vh] transition-transform duration-700 ease-in-out">
             <motion.div
               initial={{ rotateY: 180 }}
               animate={{ rotateY: 0, transition: { delay: 2, duration: 0.5 } }}
@@ -110,10 +110,10 @@ const GameCard = ({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 2.7 } }}
-          className="z-50 mt-10"
+          className="z-50 mt-[4vh]"
         >
           <Image
-            className="h-7"
+            className="h-[4vh]"
             src={`/queation/${number}.svg`}
             alt="Front"
             width={800}
@@ -126,12 +126,12 @@ const GameCard = ({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { delay: 2.7 } }}
-          className="flex-center z-50 mt-6 flex flex-row items-center gap-8"
+          className="flex-center z-50 mt-[3vh] flex flex-row items-center gap-[4vh]"
         >
           <div className="relative">
             <Link href={ending} onClick={playYesAudio}>
               <Image
-                className="h-7 cursor-pointer duration-150"
+                className="h-[4vh] cursor-pointer duration-150"
                 src={`/queation/yes.svg`}
                 alt="Front"
                 width={40}
@@ -149,7 +149,7 @@ const GameCard = ({
 
           <div className="flex-center relative flex">
             <Image
-              className="h-7 cursor-pointer duration-150"
+              className="h-[4vh] cursor-pointer duration-150"
               src={`/queation/no.svg`}
               alt="Front"
               width={40}
