@@ -1,5 +1,7 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Overlay = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +27,7 @@ const Overlay = ({ children }: { children: React.ReactNode }) => {
         {isBtnShowed ? (
           ''
         ) : (
-          <div className="rounded-lg rounded-r-none bg-black/60 p-2">
+          <div className="rounded-lg rounded-r-none bg-[#231916]/90 p-2">
             <svg
               width="17"
               height="29"
@@ -47,9 +49,72 @@ const Overlay = ({ children }: { children: React.ReactNode }) => {
       <div
         className={`${
           isOpen ? 'right-0' : 'right-[-100%]'
-        } fixed top-0 z-[1000] h-full w-full bg-black/80 transition-all duration-500 `}
+        } flex-center fixed top-0 z-[1000] flex h-full w-full bg-[#231916]/90 transition-all duration-500 `}
       >
-        {children}
+        <div className="absolute top-0 z-30 flex w-full items-center justify-between p-4">
+          <Link
+            href="/about"
+            className="cursor-pointer duration-150 hover:scale-105"
+          >
+            <Image
+              className="w-[7vw] invert"
+              src="/nav/nav-about.svg"
+              alt="navigation to about page"
+              width={200}
+              height={100}
+            />
+          </Link>
+          <Link
+            href="/starting"
+            className="cursor-pointer duration-150 hover:scale-105"
+          >
+            <Image
+              className="w-[7vw] invert"
+              src="/nav/nav-circle.svg"
+              alt="navigation info"
+              width={200}
+              height={100}
+            />
+          </Link>
+        </div>
+        <div className="m-[10%] grid w-full grid-cols-2 gap-12">
+          <Image
+            className="max-h-[80vh] w-full invert"
+            src="/end/end-left.svg"
+            alt="navigation info"
+            width={800}
+            height={800}
+          />
+          <div className="flex flex-col justify-between gap-24">
+            {children}
+            <div className="relative">
+              <Image
+                className="ml-[10%] w-[50%] invert"
+                src="/end/end-right_1.svg"
+                alt="navigation info"
+                width={400}
+                height={200}
+              />
+              <Image
+                className="absolute bottom-[-120px] right-[-120px] w-[60%]"
+                src="/end/end-right_2.webp"
+                alt="navigation info"
+                width={400}
+                height={400}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-8 left-12 z-[2] w-64">
+          <Image
+            className=""
+            src="/end/footer-white.svg"
+            alt=""
+            width={1600}
+            height={800}
+          />
+        </div>
         <button
           onClick={toggleOverlay}
           className="absolute left-0 top-[50%] z-[1000] rotate-180 cursor-pointer px-2 py-4"

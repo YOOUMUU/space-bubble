@@ -6,12 +6,18 @@ import FadeInTransition from '@/components/FadeInTransition';
 import Overlay from '@/components/Overlay';
 
 const page = () => {
-  <Overlay>
-    <div></div>
-  </Overlay>;
   return (
     <>
       <FadeInTransition>
+        <Overlay>
+          <Image
+            className="max-h-[40vh] w-full"
+            src="/end/end-4.svg"
+            alt="navigation info"
+            width={800}
+            height={800}
+          />
+        </Overlay>
         <Nav />
         <section>
           <div className="absolute z-10 flex h-screen w-screen flex-col items-end justify-center px-16">

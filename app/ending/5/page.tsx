@@ -10,7 +10,13 @@ const page = () => {
     <>
       <FadeInTransition>
         <Overlay>
-          <div></div>
+          <Image
+            className="max-h-[40vh] w-full"
+            src="/end/end-5.svg"
+            alt="navigation info"
+            width={800}
+            height={800}
+          />
         </Overlay>
         <Nav />
         <section>
