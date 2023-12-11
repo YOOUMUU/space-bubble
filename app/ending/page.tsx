@@ -27,7 +27,7 @@ const page = () => {
             height={200}
           />
           <Link href="/game">
-            <div className="mt-12 w-40 cursor-pointer duration-200 hover:scale-105">
+            <div className="mt-12 w-[10vw] cursor-pointer duration-200 hover:scale-105">
               <Image
                 className="h-auto w-full"
                 src="/end/btn.svg"
