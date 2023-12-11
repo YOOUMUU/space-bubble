@@ -4,6 +4,7 @@ import Nav from '@/components/Nav';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
+import AudioControl from '@/components/AudioControl';
 
 const Home = () => {
   const [isDivVisible, setIsDivVisible] = useState(true);
@@ -111,6 +112,7 @@ const Home = () => {
       </motion.div>
 
       <Nav />
+      <AudioControl />
     </section>
   );
 };

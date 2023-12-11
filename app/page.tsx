@@ -1,3 +1,5 @@
+'use client';
+import AudioControl from '@/components/AudioControl';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -15,6 +17,7 @@ const Home = () => {
           fill
         />
       </Link>
+      <AudioControl />
     </section>
   );
 };

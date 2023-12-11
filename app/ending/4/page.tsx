@@ -1,14 +1,18 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import Nav from '@/components/Nav';
 import Link from 'next/link';
 import FadeInTransition from '@/components/FadeInTransition';
 import Overlay from '@/components/Overlay';
+import AudioControl from '@/components/AudioControl';
 
 const page = () => {
   return (
     <>
       <FadeInTransition>
+        <AudioControl />
+
         <Overlay>
           <Image
             className="max-h-[40vh] w-full"

@@ -7,6 +7,8 @@ import GameCard from '@/components/GameCard';
 import Qian from '@/components/Qian';
 import { motion, useAnimation } from 'framer-motion';
 import ReactCanvasConfetti from 'react-canvas-confetti';
+import { useAudioContext } from '@/context/AudioContent';
+import AudioControl from '@/components/AudioControl';
 
 const Game = () => {
   const [isFirstClick, setIsFirstClick] = useState(true);
@@ -33,28 +35,10 @@ const Game = () => {
   const buttonControls = useAnimation();
   const buttonRef = useRef(null);
 
-  const backgroundAudioRef = useRef<HTMLAudioElement>(null);
   const fireAudioRef = useRef<HTMLAudioElement>(null);
   const noAudioRef = useRef<HTMLAudioElement>(null);
 
-  const [isAudioMuted, setIsAudioMuted] = useState(true);
-
-  const toggleAudioMute = () => {
-    setIsAudioMuted(!isAudioMuted);
-    if (backgroundAudioRef.current) {
-      backgroundAudioRef.current.muted = isAudioMuted;
-      if (isAudioMuted) {
-        backgroundAudioRef.current.play();
-      }
-    }
-    if (fireAudioRef.current) {
-      fireAudioRef.current.muted = isAudioMuted;
-    }
-
-    if (noAudioRef.current) {
-      noAudioRef.current.muted = isAudioMuted;
-    }
-  };
+  const { isAudioMuted } = useAudioContext();
 
   useEffect(() => {
     if (isChouqian) {
@@ -191,25 +175,7 @@ const Game = () => {
         <source src="/voices/no.mp3" type="audio/mpeg" />
       </audio>
 
-      <button
-        className="absolute bottom-12 right-12 z-50 w-12"
-        onClick={toggleAudioMute}
-      >
-        <Image
-          src="/qian/voice_control.svg"
-          alt="bg"
-          width={100}
-          height={100}
-        />
-        {isAudioMuted && (
-          <div className="absolute right-6 top-0 z-20 h-12 w-[4px] rotate-[-45deg] bg-[#98485C]"></div>
-        )}
-      </button>
-
-      <audio ref={backgroundAudioRef} muted={isAudioMuted} loop>
-        <source src="/voices/background-voice.mp3" type="audio/mpeg" />
-      </audio>
-
+      <AudioControl />
       {/* Click */}
       <motion.div
         initial={{ opacity: 0 }}

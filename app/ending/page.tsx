@@ -1,12 +1,15 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import Nav from '@/components/Nav';
 import Link from 'next/link';
 import Overlay from '@/components/Overlay';
+import AudioControl from '@/components/AudioControl';
 
 const page = () => {
   return (
     <>
+      <AudioControl />
       <Overlay>
         <Image
           className="max-h-[40vh] w-full"
