@@ -1,8 +1,10 @@
+'use client';
 import Nav from '@/components/Nav';
 import React from 'react';
 import Image from 'next/image';
 import FlippedCard from '@/components/FlippedCard';
 import Link from 'next/link';
+import AudioControl from '@/components/AudioControl';
 
 const page = () => {
   const cardNumbers = Array.from({ length: 18 }, (_, index) => index + 1);
@@ -10,6 +12,7 @@ const page = () => {
   return (
     <>
       <Nav />
+      <AudioControl />
       <div className="absolute z-0 h-full w-full object-cover">
         <Image
           className="absolute h-full w-full object-cover"

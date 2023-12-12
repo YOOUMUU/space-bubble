@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import AudioControl from '@/components/AudioControl';
 
 const Loading = () => {
   const router = useRouter();
@@ -16,6 +17,8 @@ const Loading = () => {
 
   return (
     <section className="flex-center flex h-screen w-screen flex-col overflow-hidden">
+      <AudioControl />
+
       <video
         src="/loading/loading.mp4"
         autoPlay

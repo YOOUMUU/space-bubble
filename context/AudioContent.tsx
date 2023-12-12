@@ -1,22 +1,38 @@
 'use client';
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
-const AudioContext = createContext({
-  isAudioMuted: true,
-  toggleAudioMute: () => {},
-});
+interface AudioContextType {
+  isAudioMuted: boolean;
+  toggleAudioMute: () => void;
+  audio: HTMLAudioElement;
+}
 
-export const useAudioContext = () => useContext(AudioContext);
+const AudioContext = createContext<AudioContextType | null>(null);
 
-export const AudioProvider = ({ children }: { children: React.ReactNode }) => {
+export const useAudioContext = () => useContext(AudioContext)!;
+
+export const AudioProvider = ({
+  children,
+  audio,
+}: {
+  children: React.ReactNode;
+  audio: HTMLAudioElement;
+}) => {
   const [isAudioMuted, setIsAudioMuted] = useState(true);
+
+  useEffect(() => {
+    audio.muted = isAudioMuted;
+    if (!isAudioMuted) {
+      audio.play().catch((e) => console.log('Error playing audio:', e));
+    }
+  }, [isAudioMuted, audio]);
 
   const toggleAudioMute = () => {
     setIsAudioMuted(!isAudioMuted);
   };
 
   return (
-    <AudioContext.Provider value={{ isAudioMuted, toggleAudioMute }}>
+    <AudioContext.Provider value={{ isAudioMuted, toggleAudioMute, audio }}>
       {children}
     </AudioContext.Provider>
   );

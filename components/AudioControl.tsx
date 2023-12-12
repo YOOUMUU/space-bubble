@@ -1,24 +1,21 @@
 import Image from 'next/image';
 import { useAudioContext } from '@/context/AudioContent';
-import { useRef } from 'react';
 
 const AudioControl = () => {
-  const { isAudioMuted, toggleAudioMute } = useAudioContext();
-
-  const bgAudioRef = useRef<HTMLAudioElement>(null);
+  const { isAudioMuted, toggleAudioMute, audio } = useAudioContext();
 
   const toggleBackgroundVoice = () => {
     toggleAudioMute();
-    if (bgAudioRef.current) {
-      bgAudioRef.current.play();
+
+    // 根据静音状态决定是否播放音频
+    if (!isAudioMuted) {
+      // 尝试播放音频，如果遇到错误则记录
+      audio.play().catch((e) => console.error('Error playing audio:', e));
     }
   };
 
   return (
     <>
-      <audio ref={bgAudioRef} muted={isAudioMuted} loop>
-        <source src="/voices/background-voice.mp3" type="audio/mpeg" />
-      </audio>
       <button
         className="absolute bottom-12 right-12 z-50 w-12"
         onClick={toggleBackgroundVoice}

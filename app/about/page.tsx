@@ -3,6 +3,7 @@ import AboutNav from '@/components/AboutNav';
 import React, { useState } from 'react';
 import Image from 'next/image';
 import ImageSlider from '@/components/ImageSlider';
+import AudioControl from '@/components/AudioControl';
 
 const About = () => {
   const [currentImage, setCurrentImage] = useState(1);
@@ -10,6 +11,7 @@ const About = () => {
   return (
     <>
       <AboutNav />
+      <AudioControl />
       <div className="fixed z-[-1] h-screen w-screen">
         <Image
           className="h-full w-full bg-cover object-cover opacity-[18%]"
