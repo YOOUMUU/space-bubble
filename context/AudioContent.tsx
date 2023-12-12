@@ -9,7 +9,17 @@ interface AudioContextType {
 
 const AudioContext = createContext<AudioContextType | null>(null);
 
-export const useAudioContext = () => useContext(AudioContext)!;
+export const useAudioContext = () => {
+  const context = useContext(AudioContext);
+  if (!context) {
+    return {
+      isAudioMuted: true,
+      toggleAudioMute: () => {},
+      audio: null,
+    };
+  }
+  return context;
+};
 
 export const AudioProvider = ({
   children,

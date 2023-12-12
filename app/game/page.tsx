@@ -8,9 +8,14 @@ import Qian from '@/components/Qian';
 import { motion, useAnimation } from 'framer-motion';
 import ReactCanvasConfetti from 'react-canvas-confetti';
 import { useAudioContext } from '@/context/AudioContent';
-import AudioControl from '@/components/AudioControl';
+import dynamic from 'next/dynamic';
 
 const Game = () => {
+  const AudioControlWithNoSSR = dynamic(
+    () => import('@/components/AudioControl'),
+    { ssr: false }
+  );
+
   const [isFirstClick, setIsFirstClick] = useState(true);
   const cardNumbers = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
@@ -38,7 +43,9 @@ const Game = () => {
   const fireAudioRef = useRef<HTMLAudioElement>(null);
   const noAudioRef = useRef<HTMLAudioElement>(null);
 
-  const { isAudioMuted } = useAudioContext();
+  const { isAudioMuted, audio } = useAudioContext();
+
+  const isMuted = isAudioMuted ?? true;
 
   useEffect(() => {
     if (isChouqian) {
@@ -138,7 +145,7 @@ const Game = () => {
 
     setIsChouqian(false);
 
-    if (!isAudioMuted && fireAudioRef.current) {
+    if (!isMuted && fireAudioRef.current) {
       fireAudioRef.current.play();
     }
   };
@@ -171,11 +178,11 @@ const Game = () => {
       />
 
       {/* Audios */}
-      <audio ref={noAudioRef} muted={isAudioMuted}>
+      <audio ref={noAudioRef} muted={isMuted}>
         <source src="/voices/no.mp3" type="audio/mpeg" />
       </audio>
 
-      <AudioControl />
+      {audio && <AudioControlWithNoSSR />}
       {/* Click */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -257,7 +264,7 @@ const Game = () => {
             ))}
 
             {/* Qizi */}
-            <audio ref={fireAudioRef} muted={isAudioMuted} loop>
+            <audio ref={fireAudioRef} muted={isMuted} loop>
               <source src="/voices/fire-burning.mp3" type="audio/mpeg" />
             </audio>
             <div className="absolute left-[-6vw] top-0" ref={qiziRef}>
@@ -342,7 +349,7 @@ const Game = () => {
             setIsClicked(false);
             setIsChouqian(true);
           }}
-          isAudioMuted={isAudioMuted}
+          isAudioMuted={isMuted}
         />
       )}
 

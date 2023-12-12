@@ -2,14 +2,18 @@ import Image from 'next/image';
 import { useAudioContext } from '@/context/AudioContent';
 
 const AudioControl = () => {
-  const { isAudioMuted, toggleAudioMute, audio } = useAudioContext();
+  const audioContext = useAudioContext();
+
+  if (!audioContext) {
+    return null;
+  }
+
+  const { isAudioMuted, toggleAudioMute, audio } = audioContext;
 
   const toggleBackgroundVoice = () => {
     toggleAudioMute();
 
-    // 根据静音状态决定是否播放音频
-    if (!isAudioMuted) {
-      // 尝试播放音频，如果遇到错误则记录
+    if (audio && !isAudioMuted) {
       audio.play().catch((e) => console.error('Error playing audio:', e));
     }
   };
