@@ -21,7 +21,7 @@ const AudioControl = () => {
   return (
     <>
       <button
-        className="absolute bottom-12 right-12 z-50 w-12"
+        className="fixed bottom-12 right-12 z-50 w-12"
         onClick={toggleBackgroundVoice}
       >
         <Image
