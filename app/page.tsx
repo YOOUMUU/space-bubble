@@ -2,8 +2,15 @@
 import AudioControl from '@/components/AudioControl';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { preloadPageImages } from '@/utils/imagePreloader';
 
 const Home = () => {
+  useEffect(() => {
+    // Preload home page images
+    preloadPageImages('home');
+  }, []);
+
   return (
     <section className="flex-center flex h-screen w-screen">
       <Link
@@ -15,6 +22,9 @@ const Home = () => {
           src="/home/home-cover.webp"
           alt="bg"
           fill
+          priority
+          quality={90}
+          sizes="100vw"
         />
       </Link>
       <AudioControl />
