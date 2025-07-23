@@ -6,11 +6,12 @@ import { AudioProvider } from '@/context/AudioContent';
 import { registerServiceWorker } from '@/utils/serviceWorker';
 import { preloadCriticalImages } from '@/utils/imagePreloader';
 import PreloadManager from '@/components/PreloadManager';
+import { Metadata } from 'next/types';
 
-// export const metadata: Metadata = {
-//   title: '空间气泡 | Space Bubble',
-//   description: '空间气泡是(Space Bubble)是一个探讨社交距离的卡牌交互游戏。',
-// };
+export const metadata: Metadata = {
+  title: '空间气泡 | Space Bubble',
+  description: '空间气泡是(Space Bubble)是一个探讨社交距离的卡牌交互游戏。',
+};
 
 type Props = {
   children: React.ReactNode;
@@ -63,7 +64,6 @@ export default function RootLayout({ children }: Props) {
         <meta name="theme-color" content="#ffffff" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <link rel="manifest" href="/manifest.json" />
       </head>
       {audio ? (
         <AudioProvider audio={audio}>
