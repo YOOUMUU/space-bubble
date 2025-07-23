@@ -1,7 +1,7 @@
 'use client';
 import '../styles/globals.css';
 import { AudioProvider } from '@/context/OptimizedAudioContext';
-import { Suspense, memo } from 'react';
+import React,{ Suspense, memo } from 'react';
 import dynamic from 'next/dynamic';
 
 // 动态导入移动端提示组件

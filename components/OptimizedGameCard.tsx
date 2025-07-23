@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useCallback, memo } from 'react';
+import React, { useCallback, memo } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAudioContext } from '@/context/OptimizedAudioContext';
 import OptimizedImage from './OptimizedImage';
@@ -67,7 +67,7 @@ const GameCard = memo<GameCardProps>(({
   }, [playSound, handleNoClick]);
 
   const mappedNumber = positionMap(number);
-  const endingRoute = getEndingRoute(number);
+  // const endingRoute = getEndingRoute(number);
 
   // 动画变体
   const overlayVariants = {
